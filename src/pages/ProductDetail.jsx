@@ -10,7 +10,7 @@ const ProductDetail = (props) => {
 
   const { data: product, isError, error, status, isLoading } = useQuery({
     queryKey: ['products', params.id],
-    queryFn: () => axios.get(`https://fakestoreapi.com/products/${params.id}`),
+    queryFn: () => axios.get(`https://dummyjson.com/products/${params.id}`),
     enabled: !!params.id
   })
 
@@ -26,7 +26,7 @@ const ProductDetail = (props) => {
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
       <span style={{ cursor: 'pointer' }} onClick={() => navigate(-1)}>back</span>
       <h1>ProductDetail page with id : {params.id}</h1>
-      <img width={400} height={400} src={product.data.image} />
+      <img width={400} height={400} src={product.data.thumbnail} />
       <h2>{product.data.title}</h2>
       <h2>{product.data.price}</h2>
     </div>
