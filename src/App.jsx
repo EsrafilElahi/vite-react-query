@@ -1,29 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import HomePage from './pages/Home'
+import AboutPage from './pages/About'
+import ContactPage from './pages/Contact'
 
 
 // Routes
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Home Page</div>,
+    element: <HomePage title="page" />,
   },
   {
     path: "/about",
-    element: <div>About Us Page</div>,
+    element: <AboutPage title="page" />,
   },
   {
     path: "/contact",
-    element: <div>Contact Us Page</div>,
+    element: <ContactPage title="page" />,
   },
 ]);
 
 function App() {
-
-
 
   return (
     <>
