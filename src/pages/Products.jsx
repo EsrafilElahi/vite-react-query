@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios'
+import axios from 'axios';
 import { useBeforeUnload, useNavigate, createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductItem from '../components/ProductItem';
 import styles from '../styles/products.module.css';

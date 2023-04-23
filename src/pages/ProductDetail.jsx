@@ -1,26 +1,35 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
 import { useQuery, QueryCache, useQueryClient } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom';
+
 
 const ProductDetail = (props) => {
   let params = useParams();
+  const navigate = useNavigate();
 
-  const queryClient = useQueryClient();
-
-  // https://fakestoreapi.com/products/1
-
-  const { data, isError, error, isLoading } = useQuery({
+  const { data: product, isError, error, status, isLoading } = useQuery({
     queryKey: ['products', params.id],
-    queryFn: axios.get()
+    queryFn: () => axios.get(`https://fakestoreapi.com/products/${params.id}`),
+    enabled: !!params.id
   })
 
 
-  const Products = queryClient.getQueryData(["products"]);
-  console.log("queryClient :", Products);
-
+  if (isError) {
+    return <div>has an error accured!! {error.message}</div>
+  }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
-    <div>ProductDetail : {params.id}</div>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <span style={{ cursor: 'pointer' }} onClick={() => navigate(-1)}>back</span>
+      <h1>ProductDetail page with id : {params.id}</h1>
+      <img width={400} height={400} src={product.data.image} />
+      <h2>{product.data.title}</h2>
+      <h2>{product.data.price}</h2>
+    </div>
   )
 }
 
