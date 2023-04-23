@@ -13,21 +13,9 @@ const Products = (props) => {
 
   const { data, status, isError, isLoading, error, isPreviousData, prefetch } = useProductsQuery(page)
 
-  console.log('products :', data);
-
-
   useBeforeUnload(
     prefetch(2)
   )
-
-
-  if (isError) {
-    return <div>has an error accured!! {error.message}</div>
-  }
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
 
   const handleNextPage = () => {
     setPage(prev => prev + 1);
@@ -36,6 +24,13 @@ const Products = (props) => {
 
   const handlePrev = () => {
     page > 1 ? setPage(prev => prev - 1) : setPage(1);
+  }
+
+  if (isError) {
+    return <div>has an error accured!! {error.message}</div>
+  }
+  if (isLoading) {
+    return <div>Loading...</div>
   }
 
   return (
