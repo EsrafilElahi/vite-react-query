@@ -1,53 +1,25 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios'
 import { useBeforeUnload, useNavigate, createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductItem from '../components/ProductItem';
-import styles from '../styles/products.module.css'
+import styles from '../styles/products.module.css';
 
 const Products = (props) => {
-  const { title } = props
+  const client = useQueryClient();
 
-  const prods = [
-    {
-      id: 1,
-      title: 'prod 1',
-      desc: 'desc 1',
-      price: 121
-    },
-    {
-      id: 2,
-      title: 'prod 2',
-      desc: 'desc 2',
-      price: 122
-    },
-    {
-      id: 3,
-      title: 'prod 3',
-      desc: 'desc 3',
-      price: 123
-    },
-    {
-      id: 4,
-      title: 'prod 4',
-      desc: 'desc 4',
-      price: 124
-    },
-    {
-      id: 5,
-      title: 'prod 5',
-      desc: 'desc 5',
-      price: 125
-    },
-    {
-      id: 6,
-      title: 'prod 6',
-      desc: 'desc 6',
-      price: 126
-    },
-  ]
+  const { data: products, status, isError, isLoading, error } = useQuery(["products"], () => axios.get("https://fakestoreapi.com/products?limit=10"));
+
+  if (isError) {
+    return <div>has an error accured!! {error.message}</div>
+  }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className={styles.products}>
-      {prods.map(product => (
+      {products?.data?.map(product => (
         <ProductItem key={product.id} product={product} />
       ))}
     </div>
