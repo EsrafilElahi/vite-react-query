@@ -1,11 +1,17 @@
 import React from 'react'
+import styles from '../styles/productItem.module.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const ProductItem = ({ product }) => {
+
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <h2 className='text-3xl text-orange-900 font-bold underline'>title :{product.title}</h2>
+    <div className={styles.div} onClick={() => navigate(`/products/${product.id}`)}>
+      <h2>title :{product.title}</h2>
       <h4>description :{product.desc}</h4>
-      <span className='text-3xl text-orange-900'>price :{product.price}</span>
+      <span>price :{product.price}</span>
     </div>)
 }
 

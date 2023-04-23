@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from 'react'
 import { useBeforeUnload, useNavigate, createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductItem from '../components/ProductItem';
-
+import styles from '../styles/products.module.css'
 
 const Products = (props) => {
   const { title } = props
@@ -46,7 +46,7 @@ const Products = (props) => {
   ]
 
   return (
-    <div>
+    <div className={styles.products}>
       {prods.map(product => (
         <ProductItem key={product.id} product={product} />
       ))}
