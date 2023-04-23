@@ -37,7 +37,7 @@ const Products = (props) => {
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div className={styles.products}>
         {data?.products?.map(product => (
-          <ProductItem key={product.id} product={product} />
+          <ProductItem key={product.id} product={product} page={page} />
         ))}
 
       </div>

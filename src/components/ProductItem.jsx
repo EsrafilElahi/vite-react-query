@@ -3,7 +3,7 @@ import styles from '../styles/productItem.module.css';
 import { useNavigate } from 'react-router-dom';
 
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, page }) => {
   const navigate = useNavigate();
 
   return (
