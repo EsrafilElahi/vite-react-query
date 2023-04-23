@@ -17,6 +17,8 @@ export const useDeleteProduct = (productID) => {
       return deleteProduct(productID);
     },
     onSuccess: (deletedData, variables, context) => {
+      queryClient.invalidateQueries(["products", 1]);
+
       const products = queryClient.getQueryData(["products", 1])
       const data = products?.products?.filter((item) => item._id !== productID)
       queryClient.setQueryData(["products", 1], data)
