@@ -8,7 +8,10 @@ import styles from '../styles/products.module.css';
 const Products = (props) => {
   const client = useQueryClient();
 
-  const { data: products, status, isError, isLoading, error } = useQuery(["products"], () => axios.get("https://fakestoreapi.com/products?limit=10"));
+  const { data: products, status, isError, isLoading, error } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => axios.get("https://fakestoreapi.com/products?limit=10")
+  })
 
   if (isError) {
     return <div>has an error accured!! {error.message}</div>

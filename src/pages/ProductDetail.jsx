@@ -7,9 +7,16 @@ const ProductDetail = (props) => {
 
   const queryClient = useQueryClient();
 
-  const data = queryClient.getQueryData(["products"]);
+  // https://fakestoreapi.com/products/1
 
-  console.log("queryClient :", data);
+  const { data, isError, error, isLoading } = useQuery({
+    queryKey: ['products', params.id],
+    queryFn: axios.get()
+  })
+
+
+  const Products = queryClient.getQueryData(["products"]);
+  console.log("queryClient :", Products);
 
 
   return (
