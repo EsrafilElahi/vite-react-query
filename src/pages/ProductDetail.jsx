@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useQuery, QueryCache, useQueryClient } from '@tanstack/react-query';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLoaderData, } from 'react-router-dom';
 import { useProductQuery } from '../hooks/useProduct';
 
 
@@ -11,7 +11,11 @@ const ProductDetail = (props) => {
 
   const { data: product, isError, error, status, isLoading } = useProductQuery(params.id)
 
-  
+  const paramID = useLoaderData();
+
+  console.log('album :', paramID)
+
+
   if (isError) {
     return <div>has an error accured!! {error.message}</div>
   }
