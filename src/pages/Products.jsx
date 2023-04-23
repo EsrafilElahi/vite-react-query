@@ -16,6 +16,11 @@ const Products = (props) => {
   console.log('products :', data);
 
 
+  useBeforeUnload(
+    prefetch(2)
+  )
+
+
   if (isError) {
     return <div>has an error accured!! {error.message}</div>
   }
