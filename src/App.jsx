@@ -4,6 +4,7 @@ import ProductsPage from './pages/Products'
 import ProductDetailsPage from './pages/ProductDetail'
 import AboutPage from './pages/About'
 import ContactPage from './pages/Contact'
+import InfoPage from './pages/Info'
 
 
 // Routes
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <ContactPage title="page" />,
+  },
+  {
+    path: "/info",
+    element: <InfoPage />,
   },
 ]);
 
