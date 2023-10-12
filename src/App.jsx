@@ -6,7 +6,7 @@ import AboutPage from './pages/About'
 import ContactPage from './pages/Contact'
 import InfoPage from './pages/Info'
 import { useProductQuery } from './hooks/useProduct';
-
+ 
 
 // Routes
 const router = createBrowserRouter([
